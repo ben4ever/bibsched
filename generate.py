@@ -28,12 +28,12 @@ def write_rst(scr, col_widths, start_date):
     with open('output.rst', 'w') as f:
         def make_line(fields):
             line = '|'
-            for field, width in zip(fields, [10] + col_widths):
+            for field, width in zip(fields, [11] + col_widths):
                 line += ' {} |'.format(field.ljust(width))
             return line + '\n'
 
         def make_sep(fill='-'):
-            line = '+{}+'.format(fill * 12)
+            line = '+{}+'.format(fill * 13)
             for width in col_widths:
                 line += '{}+'.format(fill * (width + 2))
             return line + '\n'
@@ -45,7 +45,8 @@ def write_rst(scr, col_widths, start_date):
 
         for day_offset, scriptures_of_day in enumerate(scr):
             day = start_date + timedelta(days=day_offset)
-            f.write(make_line([day.isoformat()] + scriptures_of_day))
+            f.write(
+                make_line([day.strftime('%-d %b, %a')] + scriptures_of_day))
             f.write(make_sep())
 
 
@@ -56,7 +57,7 @@ def write_csv(scr, start_date):
         writer.writeheader()
         for day_offset, scriptures_of_day in enumerate(scr):
             day = start_date + timedelta(days=day_offset)
-            line = {'Date': day.isoformat()}
+            line = {'Date': day.strftime('%-d %b, %a')}
             line.update(dict(zip(field_names, scriptures_of_day)))
             writer.writerow(line)
 
