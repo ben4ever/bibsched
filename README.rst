@@ -11,4 +11,5 @@ TODO
 ====
 
 Implement this in Dart with Angular so that this can be hosted and used by
-others more easily.
+others more easily. Use `this <https://stackoverflow.com/a/17836529>`__ approach
+to download a CSV file.
