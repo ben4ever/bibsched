@@ -1,0 +1,5 @@
+# Dart
+/.packages
+/.pub/
+/build/
+/pubspec.lock
